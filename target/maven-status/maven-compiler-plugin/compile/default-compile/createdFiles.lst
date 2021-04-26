@@ -1,2 +1,4 @@
 com\mycompany\botdiscord\Commands.class
 com\mycompany\botdiscord\Main.class
+com\mycompany\botdiscord\Messages.class
+com\mycompany\botdiscord\ServerRSS.class
