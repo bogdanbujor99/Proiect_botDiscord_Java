@@ -20,19 +20,19 @@ import java.net.URL;
  * @author Bogdan
  */
 public class ServerRSS {
-    SyndFeed feed;
+    SyndFeed feedJava;
     
     
     public ServerRSS() throws IOException, IllegalArgumentException, FeedException{
-        File file = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
+        File fileJava = new File("C:\\Users\\Bogdan\\OneDrive\\Documente\\NetBeansProjects\\botDiscord\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
         //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
-        feed = new SyndFeedInput().build(new XmlReader(file));
+        feedJava = new SyndFeedInput().build(new XmlReader(fileJava));
 //        System.out.println(feed.getEntries().get(1).getTitle());
         
     }
 
-    public String searchQuestion(String question){
-        for(SyndEntry entry : feed.getEntries()){
+    public String searchQuestionJava(String question){
+        for(SyndEntry entry : feedJava.getEntries()){
             if(entry.getTitle().equals(question)){
                 return entry.getDescription().getValue();
             }
