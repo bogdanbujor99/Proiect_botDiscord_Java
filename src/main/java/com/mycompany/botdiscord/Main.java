@@ -24,6 +24,5 @@ public class Main {
         jda.getPresence().setActivity(Activity.watching("himself get coded"));
         jda.addEventListener(new Commands(jda));
         jda.getPresence().setStatus(OnlineStatus.ONLINE);
-        ServerRSS server = new ServerRSS();
     }
 }
