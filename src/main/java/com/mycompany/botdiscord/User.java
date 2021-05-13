@@ -11,9 +11,8 @@ package com.mycompany.botdiscord;
  */
 public class User {
     private String name;
-    private boolean init = false;
     private boolean chooseTheme = false;
-    private String theme;
+    private ServerRSS.limbaj theme;
     
     User(String name){
         this.name = name;
@@ -23,38 +22,28 @@ public class User {
         this.name = name;
     }
 
-    public void setInit(boolean init) {
-        this.init = init;
-    }
-
     public void setChooseTheme(boolean chooseTheme) {
         this.chooseTheme = chooseTheme;
     }
 
-    public void setTheme(String theme) {
+    public void setTheme(ServerRSS.limbaj theme) {
         this.theme = theme;
     }
 
     public String getName() {
         return name;
     }
-
+    
     public boolean isInit() {
-        return init;
+        return name.isEmpty() ? false : true;
     }
 
-    public boolean isChooseTheme() {
+    public boolean hasTheme() {
         return chooseTheme;
     }
 
-    public String getTheme() {
+    public ServerRSS.limbaj getTheme() {
         return theme;
-    }
-
-    boolean getInit() {
-        return init;
-    }
-    
-    
+    }   
     
 }

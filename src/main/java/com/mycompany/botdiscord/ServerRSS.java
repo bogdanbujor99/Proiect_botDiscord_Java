@@ -22,13 +22,30 @@ import java.net.URL;
 public class ServerRSS {
     SyndFeed feedJava;
     
+    public static enum limbaj{
+        JAVA,
+        CPP,
+        PROGRAMARE
+    }
     
-    public ServerRSS() throws IOException, IllegalArgumentException, FeedException{
-        File fileJava = new File("C:\\Users\\Bogdan\\OneDrive\\Documente\\NetBeansProjects\\botDiscord\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
-        //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
-        feedJava = new SyndFeedInput().build(new XmlReader(fileJava));
-//        System.out.println(feed.getEntries().get(1).getTitle());
-        
+    public ServerRSS(limbaj limb) throws IOException, IllegalArgumentException, FeedException{
+        switch(limb){
+            case JAVA:
+            File fileJava = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
+            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
+            feedJava = new SyndFeedInput().build(new XmlReader(fileJava));
+            break;
+            case CPP:
+            File fileCpp = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariCpp.xml");
+            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
+            feedJava = new SyndFeedInput().build(new XmlReader(fileCpp));
+            break;
+            case PROGRAMARE:
+            File fileProgramare = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariProgramare.xml");
+            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
+            feedJava = new SyndFeedInput().build(new XmlReader(fileProgramare));
+            break;
+        }
     }
 
     public String searchQuestionJava(String question){

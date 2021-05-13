@@ -28,13 +28,24 @@ public class Commands extends ListenerAdapter{
     List<User> users = new ArrayList<>();
     JDA jda;
     Messages message;
-    boolean ok = false;
-    boolean okTema = false;
     
     public Commands(JDA jda){
         this.jda = jda;
     }
-
+    private boolean isUserInit(String username){
+        for(User user : users){
+            if(user.getName().equals(username))
+                return true;
+        }
+        return false;
+    }
+    private User getUserByName(String username){
+        for(User user : users){
+            if(user.getName().equals(username))
+                return user;
+        }
+        return null;
+    }
     /**
      *
      * @param event
@@ -48,29 +59,34 @@ public class Commands extends ListenerAdapter{
             event.getChannel().sendMessage("Alege o tema, " + event.getAuthor().getName() + "!").queueAfter(500, TimeUnit.MILLISECONDS);
             event.getChannel().sendMessage("1. Java\n2. C++\n3. Programare").queueAfter(1, TimeUnit.SECONDS);
             users.add(new User(event.getAuthor().getName()));
-            users.get(0).setInit(true);
-            ok = true;
         }
-        else if(users.get(0).getInit()){
+        else if(isUserInit(event.getAuthor().getName()) && !getUserByName(event.getAuthor().getName()).hasTheme()){
             if(args.equalsIgnoreCase("Java")){
                 event.getChannel().sendMessage("Tema Java a fost aleasa!\n Astept intrebarile.").queueAfter(1, TimeUnit.SECONDS);
                 users.forEach(i->{
                     System.out.println(i.getName());
                 });
-                okTema = true;
+                getUserByName(event.getAuthor().getName()).setChooseTheme(true);
+                getUserByName(event.getAuthor().getName()).setTheme(ServerRSS.limbaj.JAVA);
             }
             else if(args.equalsIgnoreCase("C++")){
                 event.getChannel().sendMessage("Tema C++ a fost aleasa!\n Astept intrebarile.").queueAfter(1, TimeUnit.SECONDS);
-                okTema = true;
+                getUserByName(event.getAuthor().getName()).setChooseTheme(true);
+                getUserByName(event.getAuthor().getName()).setTheme(ServerRSS.limbaj.CPP);
             }
             else if(args.equalsIgnoreCase("Programare")){
                 event.getChannel().sendMessage("Tema programare a fost aleasa!\n Astept intrebarile.").queueAfter(1, TimeUnit.SECONDS);
-                okTema = true;
+                getUserByName(event.getAuthor().getName()).setChooseTheme(true);
+                getUserByName(event.getAuthor().getName()).setTheme(ServerRSS.limbaj.PROGRAMARE);
             }
-            else if(okTema && !args.equalsIgnoreCase("java") && !args.equalsIgnoreCase("c++") && !args.equalsIgnoreCase("programare") && !event.getAuthor().getName().equalsIgnoreCase("discordbotjava")){
+            else{
+                event.getChannel().sendMessage("Aceasta tema nu este disponibila.").queueAfter(1, TimeUnit.SECONDS);
+            }
+        }
+        else if(isUserInit(event.getAuthor().getName()) && getUserByName(event.getAuthor().getName()).hasTheme()){
                     System.out.println(args);
                     try {
-                        ServerRSS server = new ServerRSS();
+                        ServerRSS server = new ServerRSS(getUserByName(event.getAuthor().getName()).getTheme());
                         String answer = server.searchQuestionJava(args);
                         event.getChannel().sendMessage(answer).queueAfter(1, TimeUnit.SECONDS);
                     } catch (IOException ex) {
@@ -80,7 +96,6 @@ public class Commands extends ListenerAdapter{
                     } catch (FeedException ex) {
                         Logger.getLogger(Commands.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
         }
     }
 }
