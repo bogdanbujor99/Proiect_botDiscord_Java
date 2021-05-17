@@ -27,7 +27,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 public class Commands extends ListenerAdapter{
     List<User> users = new ArrayList<>();
     JDA jda;
-    Messages message;
     
     public Commands(JDA jda){
         this.jda = jda;

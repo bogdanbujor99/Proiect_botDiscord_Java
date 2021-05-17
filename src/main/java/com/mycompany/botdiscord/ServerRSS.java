@@ -31,19 +31,19 @@ public class ServerRSS {
     public ServerRSS(limbaj limb) throws IOException, IllegalArgumentException, FeedException{
         switch(limb){
             case JAVA:
-            File fileJava = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
-            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
-            feedJava = new SyndFeedInput().build(new XmlReader(fileJava));
+            //File fileJava = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariJava.xml");
+            String urlJava = "http://localhost/IntrebariJava.xml";
+            feedJava = new SyndFeedInput().build(new XmlReader(new URL(urlJava)));
             break;
             case CPP:
-            File fileCpp = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariCpp.xml");
-            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
-            feedJava = new SyndFeedInput().build(new XmlReader(fileCpp));
+            //File fileCpp = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariCpp.xml");
+            String urlCpp = "http://localhost/IntrebariCpp.xml";
+            feedJava = new SyndFeedInput().build(new XmlReader(new URL(urlCpp)));
             break;
             case PROGRAMARE:
-            File fileProgramare = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariProgramare.xml");
-            //String url = "https://stackoverflow.com/feeds/tag?tagnames=rome";
-            feedJava = new SyndFeedInput().build(new XmlReader(fileProgramare));
+            //File fileProgramare = new File("D:\\Facultate\\An2 Sem2\\PA\\Proiect_botDiscord_Java\\src\\main\\java\\com\\mycompany\\botdiscord\\IntrebariProgramare.xml");
+            String urlProgramare = "http://localhost/IntrebariProgramare.xml";
+            feedJava = new SyndFeedInput().build(new XmlReader(new URL(urlProgramare)));
             break;
         }
     }
