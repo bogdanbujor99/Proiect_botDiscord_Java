@@ -13,12 +13,12 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 
-
 /**
  *
  * @author Bogdan
  */
 public class Main {
+
     public static void main(String[] args) throws LoginException, IOException, IllegalArgumentException, FeedException {
         JDA jda = JDABuilder.createDefault("ODMyOTA0MTEyMjQwMDY2NTkw.YHqkZg.HhgzPEHjiSu6lKSSEJRIv-MGji0").build();
         jda.getPresence().setActivity(Activity.watching("himself get coded"));

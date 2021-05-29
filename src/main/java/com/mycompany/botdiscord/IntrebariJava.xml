@@ -14,6 +14,7 @@
         </item>
         <item>
             <title>What is a singleton class?</title>
+            <comment>este ok</comment>
             <description>A singleton class in java can have only one instance and hence all its methods and variables belong to just one instance. Singleton class concept is useful for the situations when there is a need to limit the number of objects for a class. </description>
         </item>
         <item>
