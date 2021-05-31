@@ -7,6 +7,8 @@ package com.mycompany.botdiscord;
 
 import com.rometools.rome.io.FeedException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -19,8 +21,13 @@ import net.dv8tion.jda.api.entities.Activity;
  */
 public class Main {
 
-    public static void main(String[] args) throws LoginException, IOException, IllegalArgumentException, FeedException {
-        JDA jda = JDABuilder.createDefault("ODMyOTA0MTEyMjQwMDY2NTkw.YHqkZg.HhgzPEHjiSu6lKSSEJRIv-MGji0").build();
+    public static void main(String[] args){
+        JDA jda = null;
+        try {
+            jda = JDABuilder.createDefault("ODMyOTA0MTEyMjQwMDY2NTkw.YHqkZg.HhgzPEHjiSu6lKSSEJRIv-MGji0").build(); //conectarea la bot prin cheia privata
+        } catch (LoginException ex) {
+            System.out.println("Eroare la logare!");
+        }
         jda.getPresence().setActivity(Activity.watching("himself get coded"));
         jda.addEventListener(new Commands(jda));
         jda.getPresence().setStatus(OnlineStatus.ONLINE);

@@ -50,7 +50,7 @@ public class ServerRSS {
 
     public String searchQuestion(String question) {
         for (SyndEntry entry : feed.getEntries()) {
-            if (entry.getTitle().equals(question)) {
+            if (entry.getTitle().contains(question)) {
                 return entry.getDescription().getValue();
             }
         }
